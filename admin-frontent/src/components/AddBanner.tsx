@@ -32,6 +32,7 @@ export default function AddBanner({
         seconds: second,
         visible: true,
       });
+location.reload();
       // { description, day, hours, minutes, seconds, link, visible }
     }
 // https://drive.google.com/drive-viewer/AKGpihYanwyseTH2ee_Ag2x1PErCfUW4Eqyd7R0SuD03PcRmoijTcuHjdg30xvojB_oWjTYIc4SRveThHXX6GkxnQlZL3d8SGPjNHEs=s1600-rw-v1
