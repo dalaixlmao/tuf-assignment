@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TimeComponent from "./TimeComponent";
 import axios from "axios";
+import {URL} from "../../../config";
 
 export default function AddBanner({
   setCreating,
@@ -22,7 +23,7 @@ export default function AddBanner({
   const [fetchNow, setFetchNow] = useState(0);
 
     async function f() {
-       await axios.post("http://localhost:8000/admin/create", {
+       await axios.post(URL+"/admin/create", {
         description: description,
         link: link,
         day: time.day,
@@ -34,10 +35,10 @@ export default function AddBanner({
       // { description, day, hours, minutes, seconds, link, visible }
     }
 // https://drive.google.com/drive-viewer/AKGpihYanwyseTH2ee_Ag2x1PErCfUW4Eqyd7R0SuD03PcRmoijTcuHjdg30xvojB_oWjTYIc4SRveThHXX6GkxnQlZL3d8SGPjNHEs=s1600-rw-v1
-  return (<div className="z-60 flex flex-col items-center w-2/5  items center bg-black/80 pb-10 pt-5 rounded-lg">
+  return (<div className={"z-60 flex flex-col items-center w-full h-full md:w-2/5 md:h-4/5  items center bg-black/80 pb-10 pt-5 rounded-lg"}>
       <div className="w-full flex flex-col items-end mr-12 cursor-pointer" onClick={()=>{setCreating(false)}}><Cross /></div>
       <div className="text-2xl font-bold">Add a banner</div>
-      <div className="flex flex-col items-start mt-4 w-full px-10">
+      <div className="flex flex-col items-start mt-4 w-full px-2 md:px-10">
         <label className="font-medium">Image Link</label>
         <input
           onChange={(e) => {
@@ -49,7 +50,7 @@ export default function AddBanner({
         />
       </div>
 
-      <div className="flex flex-col items-start mt-4 w-full px-10">
+      <div className="flex flex-col items-start mt-4 w-full px-2 md:px-10">
         <label className="font-medium">Description</label>
         <textarea
           onChange={(e) => {
@@ -59,7 +60,7 @@ export default function AddBanner({
           placeholder="Enter banner description..."
         />
       </div>
-      <div className="flex flex-col items-start mt-4 w-full px-10">
+      <div className="flex flex-col items-start mt-4 w-full px-2 md:px-10">
         <label className="font-medium">Timer</label>
         <div className="flex flex-row justify-between w-full mt-4">
           <TimeComponent type={"days"} setTime={setDay} />
@@ -69,7 +70,7 @@ export default function AddBanner({
         </div>
       </div>
 
-      <div className="flex flex-col items-start mt-4 w-full px-10">
+      <div className="flex flex-col items-start mt-4 w-full px-2 md:px-10">
         <button
           onClick={() => {
             setFetchNow(fetchNow+1);

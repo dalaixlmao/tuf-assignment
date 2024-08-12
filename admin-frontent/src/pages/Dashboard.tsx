@@ -4,6 +4,7 @@ import AddBanner from "../components/AddBanner";
 import Banner from "../components/Banner";
 import axios from "axios";
 import VisibilityBar from "../components/VisibilityBar";
+import {URL} from "../../../config";
 function Dashboard() {
   const [creating, setCreating] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -27,25 +28,26 @@ function Dashboard() {
   >();
   useEffect(() => {
     async function f() {
-      const res = await axios.get("http://localhost:8000/admin/banners");
+      const res = await axios.get(URL+"/admin/banners");
       setVisibleBanners(res.data.visibleBanners);
       setNotVisibleBanners(res.data.notVisibleBanner);
     }
     f();
   }, [creating, visible]);
   return (
-    <div className="w-screen h-screen">
+    <div className={"w-screen h-screen"}>
+      <div className="w-full flex flex-col items-center pt-3 md:pt-8 pb-3">
+        <AddButton createNew={setCreating} />
+      </div>
       {creating ? (
-        <div className="z-50 absolute flex flex-col items-center justify-center backdrop-blur-md w-screen h-screen bg-black/50">
-          <AddBanner setCreating={setCreating} />
+        <div className="z-50 md:absolute md:top-0 relative flex flex-col items-center justify-center backdrop-blur-md w-screen h-screen bg-black/50">
+          <AddBanner setCreating={setCreating}/>
         </div>
       ) : (
         <></>
       )}
 
-      <div className="w-full flex flex-col items-center pt-8">
-        <AddButton createNew={setCreating} />
-      </div>
+      
       <VisibilityBar visible={visible} setVisible={setVisible} />
       <div className="w-full flex flex-col items-center mt-10">
 

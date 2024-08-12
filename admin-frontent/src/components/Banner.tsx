@@ -4,6 +4,7 @@ import AdminOnly from "./AdminOnly";
 import InsideImage from "./InsideImage";
 import axios from "axios";
 import EditBanner from "./EditBanner";
+import {URL} from "../../../config";
 
 function Banner({
   link,
@@ -22,7 +23,7 @@ function Banner({
   const [editing, setEditing] = useState(false);
   useEffect(() => {
     async function f() {
-      await axios.patch("http://localhost:8000/admin/visibilty", {
+      await axios.patch(URL+"/admin/visibilty", {
         id: id,
         visibility: vis,
       });
@@ -42,13 +43,13 @@ function Banner({
 
         
         {editing? (
-        <div className="z-50 top-0 absolute flex flex-col items-center justify-center backdrop-blur-md w-screen h-screen bg-black/40">
+        <div className="z-50 md:top-0 h-full h-fit absolute flex flex-col items-center justify-center backdrop-blur-md w-screen md:h-screen bg-black/40">
           <EditBanner setEditing={setEditing} link={link} description={description} id={id} startTime={startTime} />
         </div>
       ) : (
         <></>
       )}
-      <div className="flex h-full md:rounded-xl flex-col items-center md:flex-row md:items-start md:justify-between w-full backdrop-saturate-0 bg-black/80 md:p-4">
+      <div className="flex h-full md:rounded-xl flex-col items-center md:flex-row md:items-start md:justify-between w-full backdrop-blur-md md:backdrop-blur-none backdrop-saturate-0 bg-black/80 md:p-4">
         <InsideImage link={link} />
         <div className="h-full w-full flex-col items-center">
           <AdminOnly visible={vis} setVisible={setVis} editing={setEditing} />

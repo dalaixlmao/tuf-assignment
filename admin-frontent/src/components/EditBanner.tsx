@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TimeComponent from "./TimeComponent";
 import axios from "axios";
+import {URL} from "../../../config";
 
 export default function EditBanner({
   setEditing,
@@ -39,7 +40,7 @@ export default function EditBanner({
     time += day * 60 * 60 * 24;
     const nd = startTime;
     const ndd = new Date(nd.getTime() + time * 1000);
-    await axios.patch("http://localhost:8000/admin/update", {
+    await axios.patch(URL+"/admin/update", {
       description: d,
       link: l,
       startTime: ndd.toISOString(),
@@ -48,7 +49,7 @@ export default function EditBanner({
     location.reload();
   }
   return (
-    <div className="z-50 flex flex-col items-center w-2/5  items center bg-black/80 pb-10 pt-5 rounded-lg">
+    <div className="z-50 flex flex-col items-center w-full h-full md:h-4/5 md:w-2/5  items center bg-black/80 pb-10 pt-5 rounded-lg">
       <div
         className="w-full flex flex-col items-end mr-12 cursor-pointer"
         onClick={() => {
@@ -59,7 +60,7 @@ export default function EditBanner({
       </div>
 
       <div className="text-2xl font-bold">Edit a banner</div>
-      <div className="flex flex-col items-start mt-4 w-full px-10">
+      <div className="flex flex-col items-start mt-4 w-full px-2 md:px-10">
         <label className="font-medium">Image Link</label>
         <input
           onChange={(e) => {
@@ -72,7 +73,7 @@ export default function EditBanner({
         />
       </div>
 
-      <div className="flex flex-col items-start mt-4 w-full px-10">
+      <div className="flex flex-col items-start mt-4 w-full px-2 md:px-10">
         <label className="font-medium">Description</label>
         <textarea
           value={d}
@@ -83,7 +84,7 @@ export default function EditBanner({
           placeholder="Enter banner description..."
         />
       </div>
-      <div className="flex flex-col items-start mt-4 w-full px-10">
+      <div className="flex flex-col items-start mt-4 w-full px-2 md:px-10">
         <div className="flex flex-row justify-between w-full"><label className="font-medium">Timer</label>
         <label className="text-md font-light text-white/50">
           <a className="font-semibold text-white">Current:</a> {dd}d : {hh}h : {mm}m : {ss}s
@@ -97,7 +98,7 @@ export default function EditBanner({
         </div>
       </div>
 
-      <div className="flex flex-col items-start mt-4 w-full px-10">
+      <div className="flex flex-col items-start mt-4 w-full px-2 md:px-10">
         <button
           onClick={() => {
             setEditing(false);

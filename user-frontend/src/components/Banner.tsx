@@ -21,7 +21,7 @@ function Banner({
         boxShadow: "inset 5px 5px 50px 10px rgba(0, 0, 0, 0.7)",
       }}
     >
-      <div className="flex h-full md:rounded-lg md:flex-row flex-col justify-between w-full backdrop-saturate-0 bg-black/80 md:p-4">
+      <div className="flex h-full md:rounded-lg md:flex-row flex-col justify-between w-full backdrop-blur-md md:backdrop-blur-none backdrop-saturate-0 bg-black/80 md:p-4">
         <InsideImage link={link} />
         <div className="h-full w-full flex-col">
           <div className="w-full flex flex-col h-full justify-center items-center md:pl-10 px-3">

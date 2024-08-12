@@ -14,9 +14,12 @@ const client_1 = require("@prisma/client");
 const express_1 = require("express");
 const prisma = new client_1.PrismaClient();
 exports.userRoute = (0, express_1.Router)();
-exports.userRoute.get('/banners', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.userRoute.get("/banners", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const banners = yield prisma.banner.findMany({ where: { visible: true } });
+        const banners = yield prisma.banner.findMany({
+            where: { visible: true },
+            select: { link: true, description: true, startTime: true },
+        });
         res.status(200).json({ banners: banners });
     }
     catch (e) {

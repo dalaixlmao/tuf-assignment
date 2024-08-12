@@ -20,15 +20,3 @@ model Banner{
   startTime DateTime
   description String @db.Text
 }
-
-model User{
-  id Int @id @default(autoincrement())
-  email String @unique
-  password String
-}
-
-model Admin{
-  id Int @id @default(autoincrement())
-  email String @unique
-  password String
-}
