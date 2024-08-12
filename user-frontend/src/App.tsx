@@ -1,12 +1,12 @@
 
-import './App.css'
-import Banner from './components/Banner'
+import './App.css';
+import Dashboard from './pages/Dashboard';
 
 function App() {
 
   return (
-    <div>
-      <Banner />
+    <div className='w-screen h-screen'>
+      <Dashboard />
     </div>
   )
 }

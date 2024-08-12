@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TimeComponent from "./TimeComponent";
 import axios from "axios";
 
@@ -21,10 +21,8 @@ export default function AddBanner({
   const [second, setSecond] = useState(0);
   const [fetchNow, setFetchNow] = useState(0);
 
-  useEffect(() => {
-    console.log("working?");
     async function f() {
-      const res = await axios.post("http://localhost:8000/admin/create", {
+       await axios.post("http://localhost:8000/admin/create", {
         description: description,
         link: link,
         day: time.day,
@@ -33,15 +31,11 @@ export default function AddBanner({
         seconds: second,
         visible: true,
       });
-      console.log(res.data);
-
       // { description, day, hours, minutes, seconds, link, visible }
     }
-    if (fetchNow) f();
-  }, [fetchNow, time, description, link]);
 // https://drive.google.com/drive-viewer/AKGpihYanwyseTH2ee_Ag2x1PErCfUW4Eqyd7R0SuD03PcRmoijTcuHjdg30xvojB_oWjTYIc4SRveThHXX6GkxnQlZL3d8SGPjNHEs=s1600-rw-v1
-  return (
-    <div className="flex flex-col items-center w-2/5  items center bg-black/30 pb-10 pt-5 rounded-lg">
+  return (<div className="z-60 flex flex-col items-center w-2/5  items center bg-black/80 pb-10 pt-5 rounded-lg">
+      <div className="w-full flex flex-col items-end mr-12 cursor-pointer" onClick={()=>{setCreating(false)}}><Cross /></div>
       <div className="text-2xl font-bold">Add a banner</div>
       <div className="flex flex-col items-start mt-4 w-full px-10">
         <label className="font-medium">Image Link</label>
@@ -49,7 +43,7 @@ export default function AddBanner({
           onChange={(e) => {
             setLink(e.target.value);
           }}
-          className="mt-2 py-1 px-3 rounded-md w-full placeholder-white/20"
+          className="z-50 mt-2 py-1 px-3 rounded-md w-full placeholder-white/20"
           type={"url"}
           placeholder="https://www.abc.com/image.png"
         />
@@ -78,6 +72,7 @@ export default function AddBanner({
       <div className="flex flex-col items-start mt-4 w-full px-10">
         <button
           onClick={() => {
+            setFetchNow(fetchNow+1);
             setCreating(false);
             setTime({
               day: day,
@@ -85,14 +80,20 @@ export default function AddBanner({
               minutes: minute,
               seconds: second,
             });
-            setFetchNow(fetchNow+1);
-            console.log(day, hour, minute, second);
+            f();
           }}
-          className="bg-black w-full"
+          className="bg-white/10 w-full"
         >
           Create Banner
         </button>
       </div>
     </div>
   );
+}
+
+function Cross(){
+  return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+</svg>
+
 }

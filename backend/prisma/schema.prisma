@@ -15,10 +15,10 @@ datasource db {
 
 model Banner{
   id Int @id @default(autoincrement())
-  link String
+  link String @db.Text
   visible Boolean
   startTime DateTime
-  description String
+  description String @db.Text
 }
 
 model User{

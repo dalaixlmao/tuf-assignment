@@ -1,12 +1,9 @@
 export default function AddButton({createNew}:{createNew:(a:boolean)=>void}){
-
-
-    
-    return <div className="cursor-pointer" onClick={()=>{createNew(true)}}>
+    return <div className="cursor-pointer flex flex-col items-center text-[15px] font-light" onClick={()=>{createNew(true)}}>
         <Add/>
+        <div className="hover:underline">(Add banner)</div>
     </div>
 }
-
 
 function Add(){
     return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-10">

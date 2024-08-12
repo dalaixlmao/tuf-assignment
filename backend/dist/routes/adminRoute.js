@@ -61,6 +61,43 @@ exports.adminRoute.patch("/visibilty", (req, res) => __awaiter(void 0, void 0, v
         res.status(500).json({ message: e.message });
     }
 }));
+exports.adminRoute.get("/banners", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const visibleBanners = yield prisma.banner.findMany({
+            where: { visible: true },
+        });
+        const notVisibleBanner = yield prisma.banner.findMany({
+            where: { visible: false },
+        });
+        res.status(200).json({
+            visibleBanners: visibleBanners,
+            notVisibleBanner: notVisibleBanner,
+        });
+    }
+    catch (e) {
+        res.status(500).json({ message: e.message });
+    }
+}));
+exports.adminRoute.patch("/update", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const body = {
+        link: req.body.link,
+        description: req.body.description,
+        startTime: new Date(req.body.startTime)
+    };
+    try {
+        const banner = yield prisma.banner.update({
+            where: { id: req.body.id },
+            data: body,
+        });
+        res.status(200).json({
+            message: "banner updated",
+            banner: banner,
+        });
+    }
+    catch (e) {
+        res.status(500).json({ message: e.message });
+    }
+}));
 exports.adminRoute.patch("/timer", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { day, minutes, hours, seconds, id } = req.body;
     const date = new Date();
@@ -83,7 +120,7 @@ exports.adminRoute.patch("/timer", (req, res) => __awaiter(void 0, void 0, void 
         res.status(500).json({ message: e.message });
     }
 }));
-exports.adminRoute.patch("/timer", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.adminRoute.patch("/link", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { link, id } = req.body;
     try {
         const banner = yield prisma.banner.update({

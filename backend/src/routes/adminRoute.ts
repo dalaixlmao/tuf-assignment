@@ -52,6 +52,43 @@ adminRoute.patch("/visibilty", async (req, res) => {
   }
 });
 
+adminRoute.get("/banners", async (req, res) => {
+  try {
+    const visibleBanners = await prisma.banner.findMany({
+      where: { visible: true },
+    });
+    const notVisibleBanner = await prisma.banner.findMany({
+      where: { visible: false },
+    });
+    res.status(200).json({
+      visibleBanners: visibleBanners,
+      notVisibleBanner: notVisibleBanner,
+    });
+  } catch (e: any) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
+adminRoute.patch("/update", async (req, res) => {
+  const body = {
+    link:req.body.link,
+    description:req.body.description,
+    startTime: new Date(req.body.startTime)
+  }
+  try {
+    const banner = await prisma.banner.update({
+      where: { id: req.body.id },
+      data: body,
+    });
+    res.status(200).json({
+      message: "banner updated",
+      banner: banner,
+    });
+  } catch (e: any) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
 adminRoute.patch("/timer", async (req, res) => {
   const { day, minutes, hours, seconds, id } = req.body;
   const date = new Date();
@@ -75,7 +112,7 @@ adminRoute.patch("/timer", async (req, res) => {
   }
 });
 
-adminRoute.patch("/timer", async (req, res) => {
+adminRoute.patch("/link", async (req, res) => {
   const { link, id } = req.body;
   try {
     const banner = await prisma.banner.update({
