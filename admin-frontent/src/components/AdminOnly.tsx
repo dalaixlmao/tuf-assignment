@@ -1,5 +1,5 @@
 function AdminOnly({visible, setVisible, editing}:{visible:boolean, setVisible:(a:boolean)=>void, editing:(a:boolean)=>void}){
-    return <div className="z-0 cursor-pointer absolute md:relative top-0 flex flex-row md:mt-0 md:mt-2 p-1 md:p-0 bg-black/80 md:bg-transparent justify-end w-full">
+    return <div className="z-0 cursor-pointer absolute backdrop-blur-md bg-black/80 md:relative top-0 flex flex-row md:mt-0 md:mt-2 p-1 md:p-0 md:bg-transparent justify-end w-full">
     <div
       className="mr-3"
       onClick={() => {
