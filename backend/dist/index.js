@@ -13,6 +13,7 @@ app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
 app.use('/user', userRoute_1.userRoute);
 app.use('/admin', adminRoute_1.adminRoute);
+const PORT = process.env.PORT || 8000;
 app.listen(process.env.PORT, () => {
     console.log("Server running on port" + process.env.PORT);
 });
