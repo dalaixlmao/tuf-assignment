@@ -1,2 +1,2 @@
 
-export const URL = "http://35.154.187.168";
+export const URL = "https://myappdalaixlmao.zapto.org";
