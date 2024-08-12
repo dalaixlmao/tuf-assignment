@@ -68,7 +68,7 @@ adminRoute.post("/create", async (req, res) => {
   time += minutes * 60;
   time += hours * 60 * 60;
   time += day * 60 * 60 * 24;
-  const ndate = new Date(time);
+  const ndate = new Date(time*1000);
   try {
     const banner = await prisma.banner.create({
       data: {
