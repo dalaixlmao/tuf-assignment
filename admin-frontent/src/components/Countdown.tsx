@@ -14,12 +14,20 @@ function Countdown({ date }: { date: Date }) {
     setTimeout(() => {
       setNow(new Date());
     }, 1000);
+    
+    const milliDiff = (t1-t2);
     setT(t1 - t2);
-    const nD = new Date(t1 - t2);
-    setD(nD.getDate());
-    setH(nD.getHours());
-    setM(nD.getMinutes());
-    setS(nD.getSeconds());
+    const totalSeconds = Math.floor(milliDiff / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const totalDays = Math.floor(totalHours/24);
+    const remSeconds = totalSeconds % 60;
+    const remMinutes = totalMinutes % 60;
+    const remHours = totalHours%24;
+    setD(totalDays);
+    setH(remHours);
+    setM(remMinutes);
+    setS(remSeconds);
   }, [now, t]);
   return (
     <div className="z-0 flex flex-row md:ml-10 items-center">
