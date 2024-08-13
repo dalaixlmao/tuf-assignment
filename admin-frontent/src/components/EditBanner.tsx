@@ -20,17 +20,19 @@ export default function EditBanner({
   const [d, setD] = useState(description);
   const t1 = startTime.getTime();
   const t2 = new Date().getTime();
-  const t = t1 - t2;
-  const nd = new Date(t);
-  const dd = nd.getDate();
-  const hh = nd.getHours();
-  const mm = nd.getMinutes();
-  const ss = nd.getSeconds();
+  const milliDiff = t1 - t2;
+  const totalSeconds = Math.floor(milliDiff / 1000);
+  const totalMinutes = Math.floor(totalSeconds / 60);
+  const totalHours = Math.floor(totalMinutes / 60);
+  const totalDays = Math.floor(totalHours/24);
+  const remSeconds = totalSeconds % 60;
+  const remMinutes = totalMinutes % 60;
+  const remHours = totalHours%24;
 
-  const [day, setDay] = useState(nd.getDate());
-  const [hour, setHour] = useState(nd.getHours());
-  const [minute, setMinute] = useState(nd.getMinutes());
-  const [second, setSecond] = useState(nd.getSeconds());
+  const [day, setDay] = useState(totalDays);
+  const [hour, setHour] = useState(remHours);
+  const [minute, setMinute] = useState(remMinutes);
+  const [second, setSecond] = useState(remSeconds);
 
   async function f() {
     let time = 0;
@@ -87,7 +89,7 @@ export default function EditBanner({
       <div className="flex flex-col items-start mt-4 w-full px-2 md:px-10">
         <div className="flex flex-row justify-between w-full"><label className="font-medium">Timer</label>
         <label className="text-md font-light text-white/50">
-          <a className="font-semibold text-white">Current:</a> {dd}d : {hh}h : {mm}m : {ss}s
+          <a className="font-semibold text-white">Current:</a> {totalDays}d : {remHours}h : {remMinutes}m : {remSeconds}s
         </label></div>
         
         <div className="flex flex-row justify-between w-full mt-4">
