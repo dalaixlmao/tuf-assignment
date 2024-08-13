@@ -10,12 +10,12 @@ export default function AddBanner({
 }) {
   const [link, setLink] = useState("");
   const [description, setDescription] = useState("");
-  const [time, setTime] = useState({
-    day: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  // const [time, setTime] = useState({
+  //   day: 0,
+  //   hours: 0,
+  //   minutes: 0,
+  //   seconds: 0,
+  // });
   const [day, setDay] = useState(0);
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
@@ -76,12 +76,12 @@ location.reload();
           onClick={() => {
             setFetchNow(fetchNow+1);
             setCreating(false);
-            setTime({
-              day: day,
-              hours: hour,
-              minutes: minute,
-              seconds: second,
-            });
+            // setTime({
+            //   day: day,
+            //   hours: hour,
+            //   minutes: minute,
+            //   seconds: second,
+            // });
             f();
           }}
           className="bg-white/10 w-full"
