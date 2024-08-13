@@ -6,7 +6,7 @@ function InsideImage({link}:{link:string}) {
       className="z-0 min-w-48 min-h-36 md:rounded-md"
       style={{
         backgroundImage: `url(${link})`,
-        backgroundSize: "cover", // Adjust this to 'contain' or 'auto' based on your requirement
+        backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     ></div>
