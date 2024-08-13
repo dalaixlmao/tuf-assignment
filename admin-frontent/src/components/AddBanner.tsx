@@ -26,8 +26,8 @@ export default function AddBanner({
        await axios.post(URL+"/admin/create", {
         description: description,
         link: link,
-        day: time.day,
-        hours: time.hours,
+        day: day,
+        hours: hours,
         minutes: minute,
         seconds: second,
         visible: true,
