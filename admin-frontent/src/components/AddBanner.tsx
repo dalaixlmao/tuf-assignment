@@ -27,7 +27,7 @@ export default function AddBanner({
         description: description,
         link: link,
         day: day,
-        hours: hours,
+        hours: hour,
         minutes: minute,
         seconds: second,
         visible: true,
